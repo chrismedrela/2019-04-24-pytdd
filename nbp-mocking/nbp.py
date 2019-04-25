@@ -17,3 +17,12 @@ proxy_handler = ProxyHandler({
 })
 opener = build_opener(proxy_handler)
 install_opener(opener)
+'''
+
+
+def get_tables():
+    stream = request.urlopen(TABLE_LIST_ENDPOINT)
+    bytes = stream.read()
+    text = bytes.decode('utf-8-sig')
+    tables = text.splitlines()
+    return tables
