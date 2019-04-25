@@ -1,6 +1,5 @@
 import os
 
-
 DEFAULT_EXTENSION = '.txt'
 
 

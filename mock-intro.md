@@ -35,7 +35,7 @@ Pod koniec testu możemy sprawdzić, co się działo z mockiem:
 >>> m.call_args
 m(42, foo=3)
 >>> m.call_args == mock.call(2, 4)
-True
+False
 ```
 
 ## Zwracanie wartości (`return_value`)

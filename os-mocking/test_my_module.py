@@ -1,7 +1,15 @@
 import os.path
 import unittest
 
-import mock  # pip install mock
+# try:
+#     from unittest import mock
+# except ImportError:
+#     try:
+#         import mock  # pip install mock
+#     except ImportError as e:
+#         e.message += "mock library is required on Python 2. Install with 'pip install mock'"
+#         raise
+from unittest import mock
 
 import my_module
 from my_module import my_remove
@@ -50,9 +58,7 @@ class PatchingInSetupTestCase(unittest.TestCase):
     def setUp(self):
         self.os_patcher = mock.patch('my_module.os')
         self.os_mock = self.os_patcher.start()
-
-    def tearDown(self):
-        self.os_patcher.stop()
+        self.addCleanup(self.os_patcher.stop)
 
     def test_provided_extension_should_be_used(self):
         my_remove('file.md')
@@ -75,8 +81,9 @@ class ManualPatching(unittest.TestCase):
         self.os_mock = mock.Mock()
         self.real_os = my_module.os
         my_module.os = self.os_mock
+        self.addCleanup(self.cleanup_os_mock)
 
-    def tearDown(self):
+    def cleanup_os_mock(self):
         my_module.os = self.real_os
 
     def test_provided_extension_should_be_used(self):
