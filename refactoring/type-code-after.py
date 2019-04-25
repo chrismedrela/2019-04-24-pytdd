@@ -3,22 +3,34 @@ import io
 import unittest
 
 
-class Shape:
-    def __init__(self, shape):
-        assert shape in ('circle', 'dot')
-        self.shape = shape
+SHAPES = {
+    'circle': Circle,
+    'dot': Dot,
+}
 
+def Shape(shape):
+    try:
+        cls_ = SHAPES[shape]
+    except KeyError as e:
+        keys = list(SHAPES.keys())
+        e.message = e.message + f"No such shape. Choose one of {keys}"
+        raise
+    return cls_()
+
+
+class Circle:
     def draw(self):
-        if self.shape == 'circle':
-            print('o')
-        elif self.shape == 'dot':
-            print('.')
+        print('o')
 
-    def __str__(self):
-        if self.shape == 'circle':
-            return "Circle()"
-        elif self.shape == 'dot':
-            return "Dot()"
+
+class Dot:
+    def draw(self):
+        print('.')
+
+
+class Rectangle:
+    def draw(self):
+        print('[]')
 
 
 class ShapeTests(unittest.TestCase):
@@ -29,6 +41,10 @@ class ShapeTests(unittest.TestCase):
     def test_dot(self):
         self._test(shape=Shape('dot'),
                    expected_output='.')
+
+    def test_rectangle(self):
+        self._test(shape=Rectangle(),
+                   expected_output='[]')
 
     def _test(self, shape, expected_output):
         f = io.StringIO()

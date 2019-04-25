@@ -13,6 +13,11 @@ def calculate_taxable_subtotal():
 
 def calculate_total():
     print('Calculate total')
+    # - wielokrotne wywoływanie calculate_subtotal()
+    # - magic numbers
+    # - za dużo w jednej linii, brak opisu znaczenia semantycznego
+    # - sortowanie funkcji od najwyższej abstrakcji
+    # - return jako osobna instrukcja (łatwiejsze ustawianie breakpointa)
     return calculate_subtotal() + calculate_taxable_subtotal() * 0.15 \
         - (calculate_subtotal() * 0.1 if calculate_subtotal() > 100 else 0)
 
