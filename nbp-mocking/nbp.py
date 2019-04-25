@@ -6,3 +6,14 @@ TABLE_NAME_PREFIX = 'a'
 DATE_FORMAT = '%y%m%d'
 RATE_SELECTOR_PATTERN = './pozycja/[kod_waluty="{}"]/kurs_sredni'
 CFACTOR_SELECTOR_PATTERN = './pozycja/[kod_waluty="{}"]/przelicznik'
+
+# ustawienie proxy
+from urllib.request import urlopen, ProxyHandler, build_opener, install_opener
+
+'''
+proxy_handler = ProxyHandler({
+    'http': '10.144.1.10:8080', 
+    'https': '10.144.1.10:8080',
+})
+opener = build_opener(proxy_handler)
+install_opener(opener)
