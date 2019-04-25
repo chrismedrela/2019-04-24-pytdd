@@ -26,3 +26,6 @@ def home():
 
 if __name__ == "__main__":
     app.run()
+
+
+# javascript:document.body.contentEditable='true';document.designMode='on';void%200
