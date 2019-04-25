@@ -16,10 +16,16 @@ class RecentlyUsedList:
         return len(self._list)
 
     def insert(self, item):
+        ### Ask for permission
+        # if item in self._list:
+        #     self._list.remove(item)
+
+        ### Ask for forgiveness
         try:
             self._list.remove(item)
         except ValueError:
             pass
+        
         self._list.insert(0, item)
 
     def __getitem__(self, index):
