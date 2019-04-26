@@ -1,1 +1,1 @@
-[Wewnętrzna ankieta ewaulacyjna](https://forms.gle/ecYNcfb1jsKYELoD9)
+[Ankieta ewaulacyjna](https://forms.gle/BskdFbFvqkDnVRyHA)
